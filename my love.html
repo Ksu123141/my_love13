@@ -1,0 +1,502 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>1.5 года счастья ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ----- Общие стили ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(145deg, #fce4ec 0%, #f8bbd0 100%);
+      min-height: 100vh;
+      padding: 20px 16px 60px;
+      color: #4a2c3a;
+      overflow-x: hidden;
+    }
+
+    /* ----- Контейнер ----- */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ----- Шапка (карточка с заголовком и счётчиком) ----- */
+    .header-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 40px;
+      padding: 40px 30px 30px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10);
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      margin-bottom: 50px;
+      transition: 0.3s;
+    }
+
+    .header-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    }
+
+    .title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.8rem, 12vw, 4.6rem);
+      color: #880e4f;
+      text-shadow: 2px 2px 10px rgba(136, 14, 79, 0.15);
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      font-weight: 300;
+      color: #6a1b4d;
+      letter-spacing: 4px;
+      border-top: 2px dashed #f06292;
+      border-bottom: 2px dashed #f06292;
+      padding: 10px 0;
+      display: inline-block;
+      margin: 0.5rem 0 1.5rem;
+    }
+
+    .photo-placeholder {
+      width: clamp(100px, 25vw, 140px);
+      height: clamp(100px, 25vw, 140px);
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f06292, #ec407a);
+      margin: 16px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: clamp(3.5rem, 10vw, 5rem);
+      color: white;
+      box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+      border: 4px solid white;
+      transition: 0.3s;
+      flex-shrink: 0;
+    }
+
+    .photo-placeholder:hover {
+      transform: scale(1.05);
+    }
+
+    .message {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      line-height: 1.9;
+      margin: 20px 0 25px;
+      padding: 0 5px;
+      font-weight: 300;
+    }
+
+    .message strong {
+      color: #d81b60;
+      font-weight: 600;
+    }
+
+    /* ----- Счётчик ----- */
+    .counter {
+      display: flex;
+      justify-content: center;
+      gap: clamp(8px, 2vw, 24px);
+      flex-wrap: wrap;
+      margin: 10px 0 15px;
+    }
+
+    .counter-item {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      padding: clamp(10px, 2vw, 18px) clamp(12px, 2.5vw, 22px);
+      border-radius: 20px;
+      min-width: 60px;
+      flex: 1 0 auto;
+      max-width: 120px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .counter-item span {
+      display: block;
+      font-size: clamp(1.8rem, 6vw, 2.6rem);
+      font-weight: 600;
+      color: #880e4f;
+      line-height: 1.2;
+    }
+
+    .counter-item small {
+      font-size: clamp(0.6rem, 1.8vw, 0.8rem);
+      color: #6a1b4d;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer-text {
+      margin-top: 15px;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: #6a1b4d;
+      opacity: 0.8;
+    }
+
+    .footer-text i {
+      font-style: normal;
+      display: inline-block;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* ----- Галерея ----- */
+    .gallery-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      color: #880e4f;
+      text-align: center;
+      margin: 0 0 30px;
+      text-shadow: 1px 1px 6px rgba(136, 14, 79, 0.1);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    /* ----- Карточка фото ----- */
+    .photo-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: 0.3s ease;
+      transform: translateY(30px);
+      opacity: 0;
+      animation: fadeUp 0.8s forwards;
+    }
+
+    .photo-card:nth-child(1) { animation-delay: 0.05s; }
+    .photo-card:nth-child(2) { animation-delay: 0.10s; }
+    .photo-card:nth-child(3) { animation-delay: 0.15s; }
+    .photo-card:nth-child(4) { animation-delay: 0.20s; }
+    .photo-card:nth-child(5) { animation-delay: 0.25s; }
+    .photo-card:nth-child(6) { animation-delay: 0.30s; }
+    .photo-card:nth-child(7) { animation-delay: 0.35s; }
+    .photo-card:nth-child(8) { animation-delay: 0.40s; }
+    .photo-card:nth-child(9) { animation-delay: 0.45s; }
+    .photo-card:nth-child(10) { animation-delay: 0.50s; }
+
+    .photo-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 20px 50px rgba(233, 30, 99, 0.15);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .photo-card .image-wrapper {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #f8bbd0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4rem;
+      color: white;
+      position: relative;
+    }
+
+    .photo-card .image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s ease;
+      display: block;
+    }
+
+    .photo-card:hover .image-wrapper img {
+      transform: scale(1.04);
+    }
+
+    /* Если изображение не загружено — показываем эмодзи как заглушку */
+    .photo-card .image-wrapper .emoji-placeholder {
+      font-size: clamp(3rem, 15vw, 5rem);
+      background: linear-gradient(135deg, #f06292, #ec407a);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .photo-card .caption {
+      padding: 18px 16px 20px;
+      text-align: center;
+      font-weight: 300;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      line-height: 1.6;
+      color: #4a2c3a;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(4px);
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .photo-card .caption strong {
+      color: #d81b60;
+      font-weight: 600;
+    }
+
+    /* ----- Адаптив для маленьких экранов ----- */
+    max-width: 600px {
+      .header-card {
+        padding: 28px 16px 20px;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .photo-card .caption {
+        padding: 12px 10px;
+        font-size: 0.85rem;
+      }
+    }
+
+    max-width: 420px {
+      
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 40px;
+}
+      }
+      .photo-card .image-wrapper {
+        aspect-ratio: 4 / 3;
+      }
+    }
+
+    /* ----- Для альбомной ориентации на телефонах ----- */
+    max-height: 500px and (orientation: landscape) {
+      .header-card {
+        padding: 16px 20px;
+      }
+      .photo-placeholder {
+        width: 70px;
+        height: 70px;
+        font-size: 2.5rem;
+        margin: 8px auto;
+      }
+      .title {
+        font-size: 2.2rem;
+      }
+      .subtitle {
+        font-size: 0.8rem;
+padding: 5px 0;
+        margin: 5px 0;
+      }
+      .message {
+        margin: 10px 0;
+        font-size: 0.9rem;
+      }
+      .counter {
+        margin: 5px 0;
+      }
+      .counter-item {
+        padding: 4px 8px;
+        min-width: 40px;
+      }
+      .counter-item span {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* ----- Фоновые сердечки (адаптивные) ----- */
+    .hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 1.5rem;
+      color: #ec407a;
+      opacity: 0.3;
+      animation: floatHeart linear infinite;
+      user-select: none;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(110vh) rotate(0deg) scale(0.6);
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(720deg) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* ----- Дополнительная кнопка в конце ----- */
+    .ending {
+      text-align: center;
+      margin-top: 40px;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: #6a1b4d;
+      opacity: 0.7;
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+
+    .ending i {
+      font-style: normal;
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Фоновые сердечки -->
+  <div class="hearts-container" id="heartsContainer">❤️</div>
+
+  <div class="container">
+
+    <!-- Шапка -->
+    <header class="header-card">
+      <div class="title">1.5 года ❤️</div>
+      <div class="subtitle">вместе с тобой</div>
+
+     
+<div class="photo-placeholder">
+  <img src="https://sun9-60.userapi.com/s/v1/ig2/KvLDubVlO3wKYOrm5UMXKAfQxv8_cQVA7hRIp2tSK1yXaQHMFmH7MgeSqMTBadYYh-kHIhpifxBPIT9MpQSBKzZB.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440,1280x1707,1440x1920,1920x2560&from=bu&u=kX7rD1q-Fh2hRnM9Tt09foy8D9CBql-nDaOAg3o046Q&cs=1920x0" alt="Мы" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+</div>
+
+      <p class="message">
+        <strong>Мой любимый!</strong> 
+
+        Сегодня мы отмечаем <strong>полтора года</strong> нашей любви. 
+
+        Каждый день с тобой — это счастье, радость и тепло. 
+
+        Спасибо за твою заботу, улыбки и нежность. 
+
+        Я люблю тебя больше жизни! 💖
+      </p>
+
+      <div class="counter" id="counter">
+        <div class="counter-item">
+          <span id="days">0</span>
+          <small>дней</small>
+        </div>
+        <div class="counter-item">
+          <span id="hours">0</span>
+          <small>часов</small>
+        </div>
+        <div class="counter-item">
+          <span id="minutes">0</span>
+          <small>минут</small>
+        </div>
+        <div class="counter-item">
+          <span id="seconds">0</span>
+          <small>секунд</small>
+        </div>
+      </div>
+
+      <div class="footer-text">
+        <i>❤️</i> С любовью навсегда <i>❤️</i>
+      </div>
+    </header>
+
+    <!-- Галерея -->
+    <h2 class="gallery-title">Наши моменты</h2>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Каждая карточка: фото + подпись. Замените src на свои изображения и текст -->
+      <div class="photo-card">
+        <div class="image-wrapper">
+          <img src="https://sun9-19.userapi.com/s/v1/ig2/ZxfatL3XqLktkd-LtmBlFkyts0ut8OtvoDe-5Xw5ULCa7DKXRdnCEv1S1zOgzyTspVxoN8IYi84jxGVeM2yTZ_CF.jpg?quality=95&as=32x57,48x85,72x128,108x192,160x284,240x427,360x640,480x853,540x960,640x1138,720x1280,1080x1920,1280x2276,1440x2560&from=bu&cs=1440x0" alt="Фото 1" loading="lazy" />
+        </div>
+        <div class="caption"><strong>Первый поцелуй</strong> — и мир закружился.</div>
+      </div>
+
+      <div class="photo-card">
+        <div class="image-wrapper">
+          <img src="https://sun9-36.userapi.com/s/v1/ig2/m5oUrF54jORQc2qMwnrjz1m9Rc59Xa7evkMQ_rhlPpUImf8slJSIXsUE5r6NjH5x_n2uxyn_IKxVhVdYjU2Pp43A.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440,1280x1707,1440x1920,1920x2560&from=bu&cs=1920x0" alt="Фото 2" loading="lazy" />
+        </div>
+        <div class="caption"><strong>Наше первое лето</strong> — солнце, море, ты.</div>
+      </div>
+
+      <div class="photo-card">
+        <div class="image-wrapper">
+          <img src="https://sun9-18.userapi.com/s/v1/ig2/tX3HJ12mjzcFk5F6H56IR6IpKF5lYv_MQaYXKgxk6g_vyCZRGzmuitzCjLW4-CpX_dyDAzotMJVGSmwcPhDWLcgI.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960&from=bu&cs=1280x0" alt="Фото 3" loading="lazy" />
+        </div>
+        <div class="caption"><strong>Уютные вечера</strong> — чай, плед и разговоры до утра.</div>
+      </div>
+
+      <div class="photo-card">
+        <div class="image-wrapper">
+          <img src="https://sun9-29.userapi.com/s/v1/ig2/q4XqU7wljLPzZD7g5CZ7l3upDWlf9Je8ihc06sXOmg5XtHUu42G9_PMbUGwxVP-5KrAwMgIFO32gqCWehffiX7B6.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960&from=bu&cs=1280x0" alt="Фото 4" loading="lazy" />
+        </div>
+        <div class="caption"><strong>Твоя улыбка</strong> — мой главный источник света.</div>
+
+      </div>
+<script>
+  // Устанавливаем дату начала отношений – 13 января 2025 года
+  const START_DATE = new Date(2025, 0, 13); // январь = 0
+
+  function updateCounter() {
+    const now = new Date();
+    const diff = now - START_DATE;
+    if (diff < 0) {
+      document.getElementById('days').textContent = '0';
+      document.getElementById('hours').textContent = '0';
+      document.getElementById('minutes').textContent = '0';
+      document.getElementById('seconds').textContent = '0';
+      return;
+    }
+    const seconds = Math.floor(diff / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    document.getElementById('days').textContent = days;
+    document.getElementById('hours').textContent = hours % 24;
+    document.getElementById('minutes').textContent = minutes % 60;
+    document.getElementById('seconds').textContent = seconds % 60;
+  }
+
+  updateCounter();
+  setInterval(updateCounter, 1000);
+</script>
